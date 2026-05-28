@@ -19,8 +19,9 @@ async fn main() {
 
     let rot = Quat::from_axis_angle(Vec3::Y, 0.014);
 
-    #[cfg(target_arch = "wasm32")]
-    wasm_safe_thread::spawn(crate::connection::connect_to_server_wasm);
+    // We don't even need to call this code for it to not build
+    //#[cfg(target_arch = "wasm32")]
+    //wasm_safe_thread::spawn(crate::connection::connect_to_server_wasm);
 
     #[cfg(not(target_arch = "wasm32"))]
     thread::spawn(crate::connection::connect_to_server_native);
